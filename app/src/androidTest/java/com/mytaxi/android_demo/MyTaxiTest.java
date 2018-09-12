@@ -142,7 +142,7 @@ public class MyTaxiTest {
     @Test
     public void logout() {
 
-        onView(withText("Close app")).inRoot(isDialog()).check(matches(isDisplayed())).perform(scrollTo(), click());
+        onView(withText("Close app")).check(matches(isDisplayed())).perform(scrollTo(), click());
 
         SystemClock.sleep(1000);
 
@@ -202,30 +202,7 @@ public class MyTaxiTest {
             }
         };
     }
-//
-//    public static ViewAction handleConstraints(final ViewAction action, final Matcher<View> constraints)
-//    {
-//        return new ViewAction()
-//        {
-//            @Override
-//            public Matcher<View> getConstraints()
-//            {
-//                return constraints;
-//            }
-//
-//            @Override
-//            public String getDescription()
-//            {
-//                return action.getDescription();
-//            }
-//
-//            @Override
-//            public void perform(UiController uiController, View view)
-//            {
-//                action.perform(uiController, view);
-//            }
-//        };
-//    }
+
     /*
     Few Unimplemented Tests and Improvements:
 
