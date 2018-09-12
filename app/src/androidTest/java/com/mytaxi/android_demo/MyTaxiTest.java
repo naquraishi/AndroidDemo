@@ -136,14 +136,14 @@ public class MyTaxiTest {
 
     @Test
     public void logout() {
-
-        onView(withText("Close app")).check(matches(isDisplayed())).perform(scrollTo(), click());
-
-        SystemClock.sleep(1000);
-
-        onView(withText("GOT IT")).check(matches(isDisplayed())).perform(scrollTo(), click());
-
-        SystemClock.sleep(1000);
+//
+//        onView(withText("Close app")).check(matches(isDisplayed())).perform(scrollTo(), click());
+//
+//        SystemClock.sleep(1000);
+//
+//        onView(withText("GOT IT")).check(matches(isDisplayed())).perform(scrollTo(), click());
+//
+//        SystemClock.sleep(1000);
 
         try{
             onView(withId(R.id.textSearch)).check(matches(isDisplayed()));
