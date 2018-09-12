@@ -28,7 +28,7 @@ jobs:
 
       - run:
           name: install avd
-          command: sdkmanager "system-images;android-27;default;armeabi-v7a"
+          command: sdkmanager "system-images;android-26;default;armeabi-v7a"
           environment:
           TERM: dumb
 
@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Create avd
         #   command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-23;google_apis;armeabi-v7a"
-          command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-27;default;armeabi-v7a"
+          command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-26;default;armeabi-v7a"
           environment:
           TERM: dumb
 
