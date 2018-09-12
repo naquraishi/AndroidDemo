@@ -2,6 +2,8 @@ package com.mytaxi.android_demo;
 
 import android.os.SystemClock;
 import android.support.test.espresso.NoMatchingViewException;
+import android.support.test.espresso.UiController;
+import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -26,11 +28,14 @@ import java.util.Arrays;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.RootMatchers.isDialog;
 import static android.support.test.espresso.matcher.RootMatchers.isPlatformPopup;
 import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -60,22 +65,6 @@ public class MyTaxiTest {
         selectName = "Sarah Scott";
         searchString = "sa";
         invalidUserName = "i_am_invalid";
-
-        try{
-            onView(withText("Close app")).perform(click());
-        }catch (NoMatchingViewException e){
-            Log.d("Power up pop-up", "Process system pop up not found");
-        }
-
-        SystemClock.sleep(1000);
-
-        try{
-            onView(withText("GOT IT")).perform(click());
-        }catch (NoMatchingViewException e){
-            Log.d("Power up pop-up", "Pop up not found");
-        }
-
-        SystemClock.sleep(1000);
     }
 
     @Test
@@ -152,6 +141,15 @@ public class MyTaxiTest {
 
     @Test
     public void logout() {
+
+        onView(withText("Close app")).inRoot(isDialog()).check(matches(isDisplayed())).perform(scrollTo(), click());
+
+        SystemClock.sleep(1000);
+
+        onView(withText("GOT IT")).check(matches(isDisplayed())).perform(scrollTo(), click());
+
+        SystemClock.sleep(1000);
+
         try{
             onView(withId(R.id.textSearch)).check(matches(isDisplayed()));
         }catch (NoMatchingViewException nmv){
@@ -204,7 +202,30 @@ public class MyTaxiTest {
             }
         };
     }
-
+//
+//    public static ViewAction handleConstraints(final ViewAction action, final Matcher<View> constraints)
+//    {
+//        return new ViewAction()
+//        {
+//            @Override
+//            public Matcher<View> getConstraints()
+//            {
+//                return constraints;
+//            }
+//
+//            @Override
+//            public String getDescription()
+//            {
+//                return action.getDescription();
+//            }
+//
+//            @Override
+//            public void perform(UiController uiController, View view)
+//            {
+//                action.perform(uiController, view);
+//            }
+//        };
+//    }
     /*
     Few Unimplemented Tests and Improvements:
 
