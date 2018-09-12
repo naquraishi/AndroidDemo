@@ -41,9 +41,17 @@ jobs:
           TERM: dumb
 
       - run:
-          name: Launch emulator
-          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd testEmulator -noaudio -no-boot-anim -no-window -accel on
+          name: Start emulator
+          command: /opt/android-sdk-linux/emulator/emulator -avd testEmulator -no-audio -no-window
           background: true
+          environment:
+          TERM: dumb
+
+      - run:
+          name: Wait for emulator
+          command: ./android-wait-for-boot.sh
+          environment:
+          TERM: dumb
 
       - run:
           name: Remove lock screen
