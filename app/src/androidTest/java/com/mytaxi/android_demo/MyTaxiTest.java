@@ -5,6 +5,7 @@ import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -59,6 +60,22 @@ public class MyTaxiTest {
         selectName = "Sarah Scott";
         searchString = "sa";
         invalidUserName = "i_am_invalid";
+
+        try{
+            onView(withText("Close app")).perform(click());
+        }catch (NoMatchingViewException e){
+            Log.d("Power up pop-up", "Process system pop up not found");
+        }
+
+        SystemClock.sleep(1000);
+
+        try{
+            onView(withText("GOT IT")).perform(click());
+        }catch (NoMatchingViewException e){
+            Log.d("Power up pop-up", "Pop up not found");
+        }
+
+        SystemClock.sleep(1000);
     }
 
     @Test
